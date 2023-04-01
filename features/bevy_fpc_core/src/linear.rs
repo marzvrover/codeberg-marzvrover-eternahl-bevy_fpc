@@ -1,8 +1,10 @@
 //! Linear movement related module
 
-use crate::{config::FpcConfiguration, KeyboardLinearInputs};
+use crate::{
+    config::{FpcConfiguration, KeyboardLinearInputs},
+    Player,
+};
 use bevy::prelude::*;
-use bevy_fpc_common::Player;
 use bevy_rapier3d::prelude::*;
 
 /// Default value for the `WalkSpeed` component
@@ -24,7 +26,7 @@ impl Default for WalkSpeed {
 ///
 /// Keyboard inputs are configurable with `FpcConfiguration.keyboard_linear_inputs`.
 /// Internally using _Rapier_ `KinematicCharacterController`.
-pub(crate) fn handle_movements(
+pub fn handle_movements(
     mut query: Query<(&mut KinematicCharacterController, &Transform, &WalkSpeed), With<Player>>,
     fpc_conf: Res<FpcConfiguration>,
     inputs: Res<Input<KeyCode>>,

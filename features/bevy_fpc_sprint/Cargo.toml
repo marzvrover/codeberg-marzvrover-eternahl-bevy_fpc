@@ -1,5 +1,6 @@
 [package]
 name = "bevy_fpc_sprint"
+description = "Sprinting feature for `bevy_fpc`"
 version = "0.1.0"
 authors.workspace = true
 edition.workspace = true
@@ -11,5 +12,5 @@ repository.workspace = true
 bevy = { workspace = true }
 bevy_rapier3d = { workspace = true }
 log = { workspace = true }
-bevy_fpc_common = { path = "../bevy_fpc_common", version = "0.1"  }
+bevy_fpc_core = { workspace = true }
 

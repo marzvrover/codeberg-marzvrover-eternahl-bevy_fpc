@@ -3,7 +3,7 @@
 //! Give the ability to move faster on forward movement
 
 use bevy::prelude::*;
-use bevy_fpc_common::Player;
+use bevy_fpc_core::Player;
 use bevy_rapier3d::prelude::KinematicCharacterController;
 
 /// Default value for the `SprintRate` component

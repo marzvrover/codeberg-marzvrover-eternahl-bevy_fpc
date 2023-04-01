@@ -1,9 +1,9 @@
 //! Angular movement related module
 
-use crate::FpcConfiguration;
 use bevy::{input::mouse::MouseMotion, prelude::*, window::CursorGrabMode};
-use bevy_fpc_common::Player;
 use bevy_rapier3d::na::clamp;
+
+use crate::{config::FpcConfiguration, Player};
 
 /// State used to eithers contains the mouse cursor while allowing angular movements
 /// or let the mouse cursor free while preventing angular movements.
@@ -16,7 +16,7 @@ pub enum AngularState {
 
 /// Internal component used to achieve angular interpolation.
 #[derive(Component, Default, Debug)]
-pub(crate) struct VisionMotionTarget {
+pub struct VisionMotionTarget {
     /// Horizontal rotation target
     pub horizontal: f32,
     /// Vertical rotation target
@@ -24,7 +24,7 @@ pub(crate) struct VisionMotionTarget {
 }
 
 /// Process angular inputs and mutate rotation targets for next transformation.
-pub(crate) fn handle_request(
+pub fn handle_request(
     mut query: Query<(&Children, &mut VisionMotionTarget, &Transform), With<Player>>,
     mut children_query: Query<&Transform, (With<Camera3d>, Without<Player>)>,
     mut mouse_evr: EventReader<MouseMotion>,
@@ -65,7 +65,7 @@ pub(crate) fn handle_request(
 }
 
 /// Apply processed angular motion target.
-pub(crate) fn apply_motion(
+pub fn apply_motion(
     mut query: Query<(&Children, &mut Transform, &VisionMotionTarget), With<Player>>,
     mut children_query: Query<&mut Transform, (With<Camera3d>, Without<Player>)>,
     time: Res<Time>,
@@ -99,7 +99,7 @@ pub(crate) fn apply_motion(
 }
 
 /// Configure mouse cursor grab mode to `Locked` and hide the cursor.
-pub(crate) fn lock_cursor(mut windows: Query<&mut Window>) {
+pub fn lock_cursor(mut windows: Query<&mut Window>) {
     if let Ok(mut window) = windows.get_single_mut() {
         window.cursor.grab_mode = CursorGrabMode::Locked;
         window.cursor.visible = false;
@@ -107,7 +107,7 @@ pub(crate) fn lock_cursor(mut windows: Query<&mut Window>) {
 }
 
 /// Configure mouse cursor grab mode to `None` ans show the cursor.
-pub(crate) fn free_cursor(mut windows: Query<&mut Window>) {
+pub fn free_cursor(mut windows: Query<&mut Window>) {
     if let Ok(mut window) = windows.get_single_mut() {
         window.cursor.grab_mode = CursorGrabMode::None;
         window.cursor.visible = true;

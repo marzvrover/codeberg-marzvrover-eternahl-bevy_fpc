@@ -1,5 +1,6 @@
 [package]
-name = "bevy_fpc_common"
+name = "bevy_fpc_core"
+description = "Core features for `bevy_fpc`"
 version = "0.1.0"
 authors.workspace = true
 edition.workspace = true
