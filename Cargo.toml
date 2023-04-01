@@ -1,0 +1,49 @@
+[package]
+name = "bevy_fpc"
+version = "0.1.0"
+authors.workspace = true
+edition.workspace = true
+license.workspace = true
+categories.workspace = true
+repository.workspace = true
+keywords = ["gamedev","controller","first-person","bevy","plugin"]
+
+[dependencies]
+log = { workspace = true }
+bevy = { workspace = true }
+bevy_rapier3d = { workspace = true }
+bevy_fpc_common = { path = "features/bevy_fpc_common", version = "0.1"  }
+bevy_fpc_sprint = { path = "features/bevy_fpc_sprint", version = "0.1", optional = true }
+
+[features]
+default = ["bevy_fpc_sprint"]
+
+[workspace]
+members = ["features/*"]
+
+[workspace.dependencies]
+bevy = "0.10"
+bevy_rapier3d = { version = "0.21", features = ["simd-stable", "parallel"] }
+log = "0.4"
+
+[workspace.package]
+authors = ["Thomas 'Eternahl' ROLLIN"]
+edition = "2021"
+license = "Apache-2.0"
+repository = "https://codeberg.org/Eternahl/bevy_fpc"
+categories = ["game-development", "game-engines"]
+
+# Enable a small amount of optimization in debug mode
+[profile.dev]
+opt-level = 1
+
+# Improve performances in releases build (Rapier)
+[profile.release]
+codegen-units = 1
+
+# Enable high optimizations for dependencies (incl. Bevy), but not for our code:
+[profile.dev.package."*"]
+opt-level = 3
+
+[[example]]
+name = "basic"

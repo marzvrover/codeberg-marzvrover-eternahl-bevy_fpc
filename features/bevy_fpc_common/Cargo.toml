@@ -1,0 +1,13 @@
+[package]
+name = "bevy_fpc_common"
+version = "0.1.0"
+authors.workspace = true
+edition.workspace = true
+license.workspace = true
+categories.workspace = true
+repository.workspace = true
+
+[dependencies]
+bevy = { workspace = true }
+bevy_rapier3d = { workspace = true }
+
