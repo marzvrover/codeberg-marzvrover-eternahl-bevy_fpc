@@ -1,7 +1,9 @@
 [![Crates.io](https://img.shields.io/crates/v/bevy_fpc.svg)](https://crates.io/crates/bevy_fpc)
 [![MIT/Apache 2.0](https://img.shields.io/crates/l/bevy_fpc)](https://codeberg.org/Eternahl/bevy_fpc#license)
 
-First-person-controller plugin for the [Bevy](https://bevyengine.org) game-engine
+First-person-controller plugin for the [Bevy](https://bevyengine.org) game-engine.
+
+The controller benefits from the features offered by the [`rapier character controller`](https://rapier.rs/docs/user_guides/bevy_plugin/character_controller).
 
 # Usage
 
