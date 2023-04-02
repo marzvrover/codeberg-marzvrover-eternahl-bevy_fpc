@@ -39,8 +39,9 @@ Example map model by [noyou](https://sketchfab.com/3d-models/game-pirate-adventu
 
 # Docs/Features
 
-- `bevy_fpc` main crate ([Rust API Docs](https://docs.rs/bevy_fpc))
-- `bevy_fpc_sprint` (default) add sprinting capability to the controller
+- [`bevy_fpc`](https://docs.rs/bevy_fpc) main crate / API
+- [`bevy_fpc_core`](https://docs.rs/bevy_fpc_core) add minimal features to the controller
+- [`bevy_fpc_sprint`](https://docs.rs/bevy_fpc_sprint) (default) add sprinting capability to the controller
 
 # License
 
