@@ -1,5 +1,6 @@
 [![Crates.io](https://img.shields.io/crates/v/bevy_fpc.svg)](https://crates.io/crates/bevy_fpc)
 [![MIT/Apache 2.0](https://img.shields.io/crates/l/bevy_fpc)](https://codeberg.org/Eternahl/bevy_fpc#license)
+[![docs.rs](https://docs.rs/bevy_fpc/badge.svg)](https://docs.rs/bevy_fpc)
 
 First-person-controller plugin for the [Bevy](https://bevyengine.org) game-engine.
 
