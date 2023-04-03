@@ -1,6 +1,7 @@
 [![Crates.io](https://img.shields.io/crates/v/bevy_fpc.svg)](https://crates.io/crates/bevy_fpc)
 [![MIT/Apache 2.0](https://img.shields.io/crates/l/bevy_fpc)](https://codeberg.org/Eternahl/bevy_fpc#license)
 [![docs.rs](https://docs.rs/bevy_fpc/badge.svg)](https://docs.rs/bevy_fpc)
+[![Bevy tracking](https://img.shields.io/badge/Bevy%20tracking-released%20version-lightblue)](https://github.com/bevyengine/bevy/blob/main/docs/plugins_guidelines.md#main-branch-tracking)
 
 First-person-controller plugin for the [Bevy](https://bevyengine.org) game-engine.
 
