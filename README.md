@@ -12,7 +12,7 @@ The controller benefits from the features offered by the [`rapier character cont
 Plugins initialization:
 
 ```rust
-// Require the `bevy_rapier3d` plugin
+// Require the `bevy_rapier3d` crate
 App::new()
 	.add_plugin(RapierPhysicsPlugin::<NoUserData>::default())
 	.add_plugin(FpcPlugin::default())
@@ -46,6 +46,12 @@ Example map model by [noyou](https://sketchfab.com/3d-models/game-pirate-adventu
 - [`bevy_fpc`](https://docs.rs/bevy_fpc) main crate / API
 - [`bevy_fpc_core`](https://docs.rs/bevy_fpc_core) add minimal features to the controller
 - [`bevy_fpc_sprint`](https://docs.rs/bevy_fpc_sprint) (default) add sprinting capability to the controller
+
+# Version compatibility
+
+| bevy  | bevy_fpc |
+|-------|----------|
+| 0.10  | 0.1      |
 
 # License
 
