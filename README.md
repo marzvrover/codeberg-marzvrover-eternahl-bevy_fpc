@@ -2,6 +2,7 @@
 [![MIT/Apache 2.0](https://img.shields.io/crates/l/bevy_fpc)](https://codeberg.org/Eternahl/bevy_fpc#license)
 [![docs.rs](https://docs.rs/bevy_fpc/badge.svg)](https://docs.rs/bevy_fpc)
 [![Bevy tracking](https://img.shields.io/badge/Bevy%20tracking-released%20version-lightblue)](https://github.com/bevyengine/bevy/blob/main/docs/plugins_guidelines.md#main-branch-tracking)
+![Pipeline status](https://ci.codeberg.org/api/badges/Eternahl/bevy_fpc/status.svg)
 
 First-person-controller plugin for the [Bevy](https://bevyengine.org) game-engine.
 
