@@ -14,17 +14,57 @@ fn main() {
         .run()
 }
 
-fn init(mut commands: Commands, assets_server: Res<AssetServer>) {
+fn init(
+    mut commands: Commands,
+    assets_server: Res<AssetServer>,
+    mut meshes: ResMut<Assets<Mesh>>,
+    mut materials: ResMut<Assets<StandardMaterial>>,
+) {
+    // sky color
+    commands.insert_resource(ClearColor(Color::hsl(203., 0.51, 0.51)));
+
+    // ground
     commands
-        .spawn(SpatialBundle::default())
-        .insert(Collider::cuboid(100., 0., 100.))
+        .spawn(MaterialMeshBundle {
+            mesh: meshes.add(shape::Plane::from_size(100.).into()),
+            material: materials.add(Color::rgb(0.8, 0.655, 0.317).into()),
+            ..Default::default()
+        })
+        .insert(Collider::cuboid(100., 0., 100.));
+
+    // map model
+    commands
+        .spawn(SpatialBundle {
+            transform: Transform::from_xyz(0., 0., -8.),
+            ..Default::default()
+        })
         .with_children(|builder| {
             builder.spawn(SceneBundle {
                 scene: assets_server.load("temple_ruins-deyama.glb#Scene0"),
-                transform: Transform::from_xyz(0., 0., -5.),
                 ..Default::default()
             });
+
+            builder
+                .spawn(Collider::compound(vec![
+                    // floor colliders
+                    (Vec3::ZERO, Quat::default(), Collider::cuboid(2., 0.3, 2.)),
+                    (Vec3::ZERO, Quat::default(), Collider::cuboid(1.7, 0.6, 1.7)),
+                    // stair collider
+                    (
+                        Vec3::new(0., 0., 2.0),
+                        Quat::default(),
+                        Collider::cuboid(0.5, 0.15, 0.15),
+                    ),
+                    (
+                        Vec3::new(0., 0.3, 1.7),
+                        Quat::default(),
+                        Collider::cuboid(0.5, 0.15, 0.15),
+                    ),
+                ]))
+                .insert(TransformBundle::default());
         });
+
+    // lights
     commands.insert_resource(AmbientLight {
         brightness: 0.8,
         ..Default::default()
