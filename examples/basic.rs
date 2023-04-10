@@ -7,6 +7,7 @@ fn main() {
     App::new()
         .add_plugins(DefaultPlugins)
         .add_plugin(RapierPhysicsPlugin::<NoUserData>::default())
+        .add_plugin(RapierDebugRenderPlugin::default())
         .add_plugin(bevy_fpc::FpcPlugin)
         .add_startup_system(init)
         .add_system(angular_state_switching)
@@ -19,20 +20,26 @@ fn init(mut commands: Commands, assets_server: Res<AssetServer>) {
         .insert(Collider::cuboid(100., 0., 100.))
         .with_children(|builder| {
             builder.spawn(SceneBundle {
-                scene: assets_server.load("game_pirate_adventure_map.glb#Scene0"),
-                transform: Transform::from_scale(Vec3::splat(0.001))
-                    .with_rotation(Quat::from_rotation_y(PI)),
+                scene: assets_server.load("temple_ruins-deyama.glb#Scene0"),
+                transform: Transform::from_xyz(0., 0., -5.),
                 ..Default::default()
             });
         });
     commands.insert_resource(AmbientLight {
-        brightness: 0.5,
+        brightness: 0.8,
         ..Default::default()
     });
     commands
-        .spawn(DirectionalLightBundle::default())
+        .spawn(DirectionalLightBundle {
+            directional_light: DirectionalLight {
+                illuminance: 100000.0 / 2.,
+                shadows_enabled: true,
+                ..Default::default()
+            },
+            ..Default::default()
+        })
         .insert(Transform {
-            translation: Vec3::new(0., 2., 0.),
+            translation: Vec3::new(1., 2., 0.),
             rotation: Quat::from_rotation_x(-PI / 2.),
             ..Default::default()
         });

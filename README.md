@@ -40,7 +40,7 @@ Try out the example by cloning this repo and running the following command:
 // In this example, you can press the `Tab` key to switch the "angular state"
 cargo run --example basic
 ```
-Example map model by [noyou](https://sketchfab.com/3d-models/game-pirate-adventure-map-696dfa212fda4240817615bdccb373d0), licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+Example map model [Temple ruins](https://sketchfab.com/3d-models/temple-ruins-6b3eb4e27e03485a886ce5304e95f897) by [Deyama](https://sketchfab.com/deyama), licensed under [Creative Commons Attribution](http://creativecommons.org/licenses/by/4.0/)
 
 # Docs/Features
 
