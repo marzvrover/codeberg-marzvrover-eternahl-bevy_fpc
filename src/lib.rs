@@ -70,7 +70,7 @@ impl Default for FpcBundle {
         Self {
             fpc: Fpc,
             body: RigidBody::KinematicPositionBased,
-            collider: Collider::capsule_y(0.5, 0.5),
+            collider: Collider::capsule_y(0.5, 0.2),
             controller: KinematicCharacterController::default(),
             spatial: SpatialBundle::default(),
             vmt: VisionMotionTarget::default(),
