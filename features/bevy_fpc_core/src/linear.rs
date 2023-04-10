@@ -53,10 +53,12 @@ pub fn handle_movements(
             linear_velocity += transform.left();
         }
 
-        linear_velocity = linear_velocity.normalize();
-        linear_velocity *= time.delta_seconds();
-        linear_velocity *= walk_speed.0;
+        if linear_velocity.length() > 0. {
+            linear_velocity = linear_velocity.normalize();
+            linear_velocity *= time.delta_seconds();
+            linear_velocity *= walk_speed.0;
 
-        controller.translation = Some(linear_velocity);
+            controller.translation = Some(linear_velocity);
+        }
     });
 }
