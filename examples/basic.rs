@@ -73,7 +73,6 @@ fn init(
         .spawn(DirectionalLightBundle {
             directional_light: DirectionalLight {
                 illuminance: 100000.0 / 2.,
-                shadows_enabled: true,
                 ..Default::default()
             },
             ..Default::default()
@@ -93,7 +92,7 @@ fn init(
     commands
         .spawn(FpcBundle::default())
         .insert(bevy_fpc::Player)
-        .insert(TransformBundle::from(Transform::from_xyz(0., 1., 0.)));
+        .insert(TransformBundle::from(Transform::from_xyz(0., 0.75, 0.)));
 }
 
 /// Handle `AngularState` switching by input
