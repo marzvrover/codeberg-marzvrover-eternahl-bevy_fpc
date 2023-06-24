@@ -21,9 +21,12 @@ pub use bevy_fpc_sprint::{FpcSprintConfiguration, SprintRate};
 /// The `bevy_fpc` structure implementing the bevy `Plugin` trait.
 /// This plugin require the `bevy_rapier3d` plugin.
 /// ```
+/// # use bevy_fpc::FpcPlugin;
+/// # use bevy::prelude::*;
+/// # use bevy_rapier3d::prelude::*;
 /// App::new()
 /// .add_plugin(RapierPhysicsPlugin::<NoUserData>::default())
-/// .add_plugin(FpcPlugin::default())
+/// .add_plugin(FpcPlugin);
 /// ```
 pub struct FpcPlugin;
 impl Plugin for FpcPlugin {

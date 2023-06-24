@@ -14,30 +14,40 @@ Plugins initialization:
 
 ```rust
 // Require the `bevy_rapier3d` crate
+# use bevy_fpc::FpcPlugin;
+# use bevy::prelude::*;
+# use bevy_rapier3d::prelude::*;
 App::new()
 	.add_plugin(RapierPhysicsPlugin::<NoUserData>::default())
-	.add_plugin(FpcPlugin::default())
+	.add_plugin(FpcPlugin);
 ```
 
 Spawn and embody an `fpc` entity:
 
 ```rust
-commands.spawn(FpcBundle::default()).insert(Player);
+# use bevy_fpc::{FpcBundle, Player};
+# use bevy::prelude::{Commands};
+# fn init(mut commands: Commands) {
+	commands.spawn(FpcBundle::default()).insert(Player);
+# }
 ```
 
 Custom configuration:
 
 ```rust
+# use bevy_fpc::{FpcConfiguration, LINEAR_AZERTY_LAYOUT};
+# use bevy::prelude::{App, Commands};
+# let mut app = App::new();
 app.insert_resource(FpcConfiguration{
   keyboard_linear_inputs: LINEAR_AZERTY_LAYOUT,
   ..Default::default()
-})
+});
 ```
 
 Try out the example by cloning this repo and running the following command:
 
-```rust
-// In this example, you can press the `Tab` key to switch the "angular state"
+```sh
+# In this example, you can press the `Tab` key to switch the "angular state"
 cargo run --example basic
 ```
 Example map model [Temple ruins](https://sketchfab.com/3d-models/temple-ruins-6b3eb4e27e03485a886ce5304e95f897) by [Deyama](https://sketchfab.com/deyama), licensed under [Creative Commons Attribution](http://creativecommons.org/licenses/by/4.0/)
