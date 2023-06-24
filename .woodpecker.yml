@@ -1,14 +1,24 @@
 platform: linux/amd64
 
 pipeline:
-  check:
+  install:
     image: rust:1-alpine
-    environment:
-      - CARGO_TERM_COLOR=always
     commands:
       # compilation on native platforms will fail due to winit, so let's use wasm
       - rustup target install wasm32-unknown-unknown
       # system dependencies needed by bevy
       - apk add gcc libc-dev pkgconf libx11-dev alsa-lib-dev eudev-dev
+  check:
+    image: rust:1-alpine
+    environment:
+      - CARGO_TERM_COLOR=always
+    commands:
       # actual check
       - cargo check --all-features --target wasm32-unknown-unknown
+  test:
+    image: rust:1-alpine
+    environment:
+      - CARGO_TERM_COLOR=always
+    commands:
+      # run tests
+      - cargo test --all-features
