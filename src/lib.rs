@@ -1,4 +1,46 @@
-#![doc = include_str!("../README.md")]
+//! First-person-controller plugin for the [Bevy](https://bevyengine.org) game-engine.
+//!
+//! The controller benefits from the features offered by the [`rapier character controller`](https://rapier.rs/docs/user_guides/bevy_plugin/character_controller).
+//!
+//! Plugins initialization:
+//!
+//! ```rust
+//! // Require the `bevy_rapier3d` crate
+//! # use bevy_fpc::FpcPlugin;
+//! # use bevy::prelude::*;
+//! # use bevy_rapier3d::prelude::*;
+//! App::new()
+//! 	.add_plugin(RapierPhysicsPlugin::<NoUserData>::default())
+//! 	.add_plugin(FpcPlugin);
+//! ```
+//!
+//! Spawn and embody an `fpc` entity:
+//!
+//! ```rust
+//! # use bevy_fpc::{FpcBundle, Player};
+//! # use bevy::prelude::{Commands};
+//! # fn init(mut commands: Commands) {
+//! commands.spawn(FpcBundle::default()).insert(Player);
+//! # }
+//! ```
+//!
+//! Custom configuration:
+//!
+//! ```rust
+//! # use bevy_fpc::{FpcConfiguration, LINEAR_AZERTY_LAYOUT};
+//! # use bevy::prelude::{App, Commands};
+//! # let mut app = App::new();
+//! app.insert_resource(FpcConfiguration{
+//!   keyboard_linear_inputs: LINEAR_AZERTY_LAYOUT,
+//!   ..Default::default()
+//! });
+//! ```
+//!
+//! # Features
+//!
+//! - [`bevy_fpc`](https://docs.rs/bevy_fpc) main crate / API
+//! - [`bevy_fpc_core`](https://docs.rs/bevy_fpc_core) add minimal features to the controller (walking and looking)
+//! - [`bevy_fpc_sprint`](https://docs.rs/bevy_fpc_sprint) (default) add sprinting capability to the controller
 
 use bevy::prelude::*;
 use bevy_fpc_core::{
