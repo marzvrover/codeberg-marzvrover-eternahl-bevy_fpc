@@ -19,7 +19,7 @@ bevy_fpc_sprint = { path = "features/bevy_fpc_sprint", version = "0.1", optional
 
 ["dev-dependencies"]
 bevy = { workspace = true, features = ["bevy_asset", "bevy_gltf", "bevy_render", "png", "bevy_pbr"] }
-bevy_rapier3d = { workspace = true, features = ["simd-stable", "parallel", "debug-render"] }
+bevy_rapier3d = { workspace = true, features = ["simd-stable", "debug-render"] }
 
 [features]
 default = ["bevy_fpc_sprint"]
