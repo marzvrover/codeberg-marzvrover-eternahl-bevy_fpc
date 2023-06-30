@@ -100,15 +100,15 @@ struct Fpc;
 #[derive(Bundle)]
 pub struct FpcBundle {
     fpc: Fpc,
-    body: RigidBody,
-    collider: Collider,
-    controller: KinematicCharacterController,
+    pub body: RigidBody,
+    pub collider: Collider,
+    pub controller: KinematicCharacterController,
     vmt: VisionMotionTarget,
-    walk_speed: WalkSpeed,
+    pub walk_speed: WalkSpeed,
     #[bundle]
     spatial: SpatialBundle,
     #[cfg(feature = "bevy_fpc_sprint")]
-    sprint_rate: bevy_fpc_sprint::SprintRate,
+    pub sprint_rate: bevy_fpc_sprint::SprintRate,
 }
 impl Default for FpcBundle {
     fn default() -> Self {
