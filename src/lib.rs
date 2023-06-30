@@ -94,19 +94,19 @@ impl Plugin for FpcPlugin {
 
 /// Fpc marker
 #[derive(Component, Default)]
-struct Fpc;
+pub struct Fpc;
 
 /// Bundle containing all neccessary components for the base of a first person controller entity.
 #[derive(Bundle)]
 pub struct FpcBundle {
-    fpc: Fpc,
+    pub fpc: Fpc,
     pub body: RigidBody,
     pub collider: Collider,
     pub controller: KinematicCharacterController,
-    vmt: VisionMotionTarget,
+    pub vmt: VisionMotionTarget,
     pub walk_speed: WalkSpeed,
     #[bundle]
-    spatial: SpatialBundle,
+    pub spatial: SpatialBundle,
     #[cfg(feature = "bevy_fpc_sprint")]
     pub sprint_rate: bevy_fpc_sprint::SprintRate,
 }
