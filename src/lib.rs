@@ -76,19 +76,20 @@ impl Plugin for FpcPlugin {
         app.init_resource::<FpcConfiguration>()
             .add_state::<AngularState>()
             .add_systems(
+                Update,
                 (
-                    handle_request.in_set(OnUpdate(AngularState::Enabled)),
+                    handle_request.run_if(in_state(AngularState::Enabled)),
                     apply_motion,
                 )
                     .chain(),
             )
-            .add_system(lock_cursor.in_schedule(OnEnter(AngularState::Enabled)))
-            .add_system(free_cursor.in_schedule(OnExit(AngularState::Enabled)))
-            .add_systems((handle_movements, embody));
+            .add_systems(OnEnter(AngularState::Enabled), lock_cursor)
+            .add_systems(OnExit(AngularState::Enabled), free_cursor)
+            .add_systems(Update, (handle_movements, embody));
 
         #[cfg(feature = "bevy_fpc_sprint")]
         app.init_resource::<bevy_fpc_sprint::FpcSprintConfiguration>()
-            .add_system(bevy_fpc_sprint::handle_sprint);
+            .add_systems(Update, bevy_fpc_sprint::handle_sprint);
     }
 }
 
@@ -105,7 +106,6 @@ pub struct FpcBundle {
     controller: KinematicCharacterController,
     vmt: VisionMotionTarget,
     walk_speed: WalkSpeed,
-    #[bundle]
     spatial: SpatialBundle,
     #[cfg(feature = "bevy_fpc_sprint")]
     sprint_rate: bevy_fpc_sprint::SprintRate,

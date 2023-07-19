@@ -6,11 +6,11 @@ use std::f32::consts::PI;
 fn main() {
     App::new()
         .add_plugins(DefaultPlugins)
-        .add_plugin(RapierPhysicsPlugin::<NoUserData>::default())
+        .add_plugins(RapierPhysicsPlugin::<NoUserData>::default())
         // .add_plugin(RapierDebugRenderPlugin::default())
-        .add_plugin(bevy_fpc::FpcPlugin)
-        .add_startup_system(init)
-        .add_system(angular_state_switching)
+        .add_plugins(bevy_fpc::FpcPlugin)
+        .add_systems(Startup, init)
+        .add_systems(Update, angular_state_switching)
         .run()
 }
 
@@ -102,7 +102,7 @@ fn angular_state_switching(
     mut next: ResMut<NextState<AngularState>>,
 ) {
     if inputs.just_pressed(KeyCode::Tab) {
-        if state.0 == AngularState::Enabled {
+        if state.eq(&AngularState::Enabled) {
             next.set(AngularState::Disabled);
         } else {
             next.set(AngularState::Enabled);

@@ -20,7 +20,7 @@ pub struct FpcSprintConfiguration {
 impl Default for FpcSprintConfiguration {
     fn default() -> Self {
         Self {
-            keyboard_sprint_input: KeyCode::LShift,
+            keyboard_sprint_input: KeyCode::ShiftLeft,
         }
     }
 }
