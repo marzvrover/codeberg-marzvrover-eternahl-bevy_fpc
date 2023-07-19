@@ -83,11 +83,10 @@ fn init(
             ..Default::default()
         });
 
-    // Awaiting for issue #1325
-    // commands.spawn(TextBundle::from_section(
-    //     "Press `any key` to switch angular state",
-    //     TextStyle::default(),
-    // ));
+    commands.spawn(TextBundle::from_section(
+        "Press `tab` key to switch angular state",
+        TextStyle::default(),
+    ));
 
     commands
         .spawn(FpcBundle::default())
