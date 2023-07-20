@@ -493,7 +493,7 @@ dependencies = [
 
 [[package]]
 name = "bevy_fpc"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "bevy",
  "bevy_fpc_core",
@@ -504,7 +504,7 @@ dependencies = [
 
 [[package]]
 name = "bevy_fpc_core"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "bevy",
  "bevy_rapier3d",
@@ -512,7 +512,7 @@ dependencies = [
 
 [[package]]
 name = "bevy_fpc_sprint"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "bevy",
  "bevy_fpc_core",
