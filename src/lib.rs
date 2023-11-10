@@ -10,8 +10,8 @@
 //! # use bevy::prelude::*;
 //! # use bevy_rapier3d::prelude::*;
 //! App::new()
-//! 	.add_plugin(RapierPhysicsPlugin::<NoUserData>::default())
-//! 	.add_plugin(FpcPlugin);
+//! 	.add_plugins(RapierPhysicsPlugin::<NoUserData>::default())
+//! 	.add_plugins(FpcPlugin);
 //! ```
 //!
 //! Spawn and embody an `fpc` entity:
@@ -67,8 +67,8 @@ pub use bevy_fpc_sprint::{FpcSprintConfiguration, SprintRate};
 /// # use bevy::prelude::*;
 /// # use bevy_rapier3d::prelude::*;
 /// App::new()
-/// .add_plugin(RapierPhysicsPlugin::<NoUserData>::default())
-/// .add_plugin(FpcPlugin);
+/// .add_plugins(RapierPhysicsPlugin::<NoUserData>::default())
+/// .add_plugins(FpcPlugin);
 /// ```
 pub struct FpcPlugin;
 impl Plugin for FpcPlugin {
