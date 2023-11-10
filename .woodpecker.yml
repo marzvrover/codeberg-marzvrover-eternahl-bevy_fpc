@@ -6,9 +6,9 @@ steps:
     image: rust:1-alpine
     environment: &env
       - CARGO_TERM_COLOR=always
-      - RUSTFLAGS=--cfg=web_sys_unstable_apis
+      - RUSTFLAGS=--cfg=web_sys_unstable_apis -C target-feature=-crt-static
     commands:
       # system dependencies needed by bevy
-      - apk add gcc libc-dev pkgconf libx11-dev alsa-lib-dev eudev-dev nodejs
+      - apk add gcc libc-dev pkgconf libx11-dev alsa-lib-dev eudev-dev mesa-vulkan-intel
       # compilation + tests
       - cargo test
