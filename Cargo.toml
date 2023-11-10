@@ -18,7 +18,7 @@ bevy_fpc_core = { workspace = true }
 bevy_fpc_sprint = { path = "features/bevy_fpc_sprint", version = "0.1", optional = true }
 
 ["dev-dependencies"]
-bevy = { workspace = true, features = ["bevy_core_pipeline", "bevy_asset", "bevy_gltf", "bevy_scene", "bevy_winit", "bevy_render", "bevy_text", "bevy_ui", "default_font", "tonemapping_luts"] }
+bevy = { workspace = true, default-features = false, features = ["bevy_core_pipeline", "bevy_asset", "bevy_gltf", "bevy_scene", "bevy_winit", "bevy_render", "bevy_text", "bevy_ui", "default_font", "tonemapping_luts"] }
 bevy_rapier3d = { workspace = true, features = ["simd-stable", "debug-render"] }
 
 [features]
