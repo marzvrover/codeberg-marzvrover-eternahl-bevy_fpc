@@ -13,7 +13,6 @@ The controller benefits from the features offered by the [`rapier character cont
 Try out the example by cloning this repo and running the following command:
 
 ```sh
-# In this example, you can press the `Tab` key to switch the "angular state"
 cargo run --example basic
 ```
 Example map model [Temple ruins](https://sketchfab.com/3d-models/temple-ruins-6b3eb4e27e03485a886ce5304e95f897) by [Deyama](https://sketchfab.com/deyama), licensed under [Creative Commons Attribution](http://creativecommons.org/licenses/by/4.0/)
@@ -22,6 +21,7 @@ Example map model [Temple ruins](https://sketchfab.com/3d-models/temple-ruins-6b
 
 | bevy  | bevy_fpc |
 |-------|----------|
+| 0.12  | 0.1.2    |
 | 0.11  | 0.1.1    |
 | 0.10  | 0.1      |
 

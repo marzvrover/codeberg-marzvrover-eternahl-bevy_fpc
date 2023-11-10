@@ -31,7 +31,7 @@ pub fn handle_request(
     fpc_conf: Res<FpcConfiguration>,
 ) {
     // update vision motion target
-    for ev in mouse_evr.iter() {
+    for ev in mouse_evr.read() {
         query.for_each_mut(|(children, mut vmt, transform)| {
             let cursor_ratio = 0.001 * fpc_conf.angular_sensitivity;
 
