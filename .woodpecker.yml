@@ -1,6 +1,7 @@
-platform: linux/amd64
+labels:
+  platform: linux/amd64
 
-pipeline:
+steps:
   check:
     image: rust:1-alpine
     environment: &env
