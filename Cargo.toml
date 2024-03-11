@@ -29,8 +29,8 @@ members = ["features/*"]
 
 [workspace.dependencies]
 bevy_fpc_core = { path = "features/bevy_fpc_core", version = "0.1" }
-bevy = { version = "0.13.0", default-features = false, features = ["bevy_core_pipeline"] }
-bevy_rapier3d = { version = "0.25.0", default-features = false, features = ["dim3", "async-collider"] }
+bevy = { version = "0.13", default-features = false, features = ["bevy_core_pipeline"] }
+bevy_rapier3d = { version = "0.25", default-features = false, features = ["dim3", "async-collider"] }
 log = "0.4"
 
 [workspace.package]
