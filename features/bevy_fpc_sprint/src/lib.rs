@@ -46,17 +46,19 @@ pub fn handle_sprint(
     inputs: Res<ButtonInput<KeyCode>>,
     fpc_conf: Res<FpcSprintConfiguration>,
 ) {
-    query.for_each_mut(|(mut controller, transform, SprintRate(rate))| {
-        if let Some(translation) = controller.translation {
-            if inputs.pressed(fpc_conf.keyboard_sprint_input) {
-                let dot_forward = Vec2::new(transform.local_z().x, transform.local_z().z)
-                    .dot(Vec2::new(translation.x, translation.z));
+    query
+        .iter_mut()
+        .for_each(|(mut controller, transform, SprintRate(rate))| {
+            if let Some(translation) = controller.translation {
+                if inputs.pressed(fpc_conf.keyboard_sprint_input) {
+                    let dot_forward = Vec2::new(transform.local_z().x, transform.local_z().z)
+                        .dot(Vec2::new(translation.x, translation.z));
 
-                // detect forward movement
-                if dot_forward < -0.001 && dot_forward > -0.1 {
-                    controller.translation = Some(translation * *rate);
+                    // detect forward movement
+                    if dot_forward < -0.001 && dot_forward > -0.1 {
+                        controller.translation = Some(translation * *rate);
+                    }
                 }
             }
-        }
-    });
+        });
 }

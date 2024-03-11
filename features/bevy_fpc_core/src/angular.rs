@@ -32,7 +32,7 @@ pub fn handle_request(
 ) {
     // update vision motion target
     for ev in mouse_evr.read() {
-        query.for_each_mut(|(children, mut vmt, transform)| {
+        query.iter_mut().for_each(|(children, mut vmt, transform)| {
             let cursor_ratio = 0.001 * fpc_conf.angular_sensitivity;
 
             // calculate horizontal angle target
@@ -73,7 +73,7 @@ pub fn apply_motion(
 ) {
     // interpolation speed
     let interpolation = time.delta_seconds() * 20. / fpc_conf.angular_smoothing;
-    query.for_each_mut(
+    query.iter_mut().for_each(
         |(
             children,
             mut transform,

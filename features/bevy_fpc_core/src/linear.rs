@@ -30,61 +30,66 @@ pub struct Gravity(pub f32);
 /// Keyboard inputs are configurable with `FpcConfiguration.keyboard_linear_inputs`.
 /// Internally using _Rapier_ `KinematicCharacterController`.
 pub fn handle_movements(
-    mut query: Query<(&mut KinematicCharacterController, &mut RigidBody, &Transform, &WalkSpeed, &mut Gravity, &KinematicCharacterControllerOutput), With<Player>>,
+    mut query: Query<
+        (
+            &mut KinematicCharacterController,
+            &mut RigidBody,
+            &Transform,
+            &WalkSpeed,
+            &mut Gravity,
+            &KinematicCharacterControllerOutput,
+        ),
+        With<Player>,
+    >,
     fpc_conf: Res<FpcConfiguration>,
     inputs: Res<ButtonInput<KeyCode>>,
     time: Res<Time>,
 ) {
-    query.for_each_mut(|(mut controller, ridgidbody, transform, walk_speed, mut gravity, controller_output)| {
+    query.iter_mut().for_each(
+        |(mut controller, _ridgidbody, transform, walk_speed, mut gravity, controller_output)| {
+            /* if !*ridgidbody.is_ccd_enabled(){
+                *ridgidbody.enable_ccd(true);
+            } */
 
-        /* if !*ridgidbody.is_ccd_enabled(){
-            *ridgidbody.enable_ccd(true);
-        } */
+            let KeyboardLinearInputs {
+                forward,
+                right,
+                back,
+                left,
+            } = fpc_conf.keyboard_linear_inputs;
+            let mut linear_velocity = Vec3::ZERO;
+            if inputs.pressed(forward) {
+                linear_velocity += transform.forward().normalize();
+            }
+            if inputs.pressed(back) {
+                linear_velocity += transform.back().normalize();
+            }
+            if inputs.pressed(right) {
+                linear_velocity += transform.right().normalize();
+            }
+            if inputs.pressed(left) {
+                linear_velocity += transform.left().normalize();
+            }
 
-        
+            if linear_velocity.length() > 0. {
+                linear_velocity = linear_velocity.normalize();
+                linear_velocity *= time.delta_seconds();
+                linear_velocity *= walk_speed.0;
+            }
 
+            if controller_output.grounded {
+                *gravity = Gravity(0.0);
+            }
 
-        let KeyboardLinearInputs {
-            forward,
-            right,
-            back,
-            left,
-        } = fpc_conf.keyboard_linear_inputs;
-        let mut linear_velocity = Vec3::ZERO;
-        if inputs.pressed(forward) {
-            linear_velocity += transform.forward().normalize();
-        }
-        if inputs.pressed(back) {
-            linear_velocity += transform.back().normalize();
-        }
-        if inputs.pressed(right) {
-            linear_velocity += transform.right().normalize();
-        }
-        if inputs.pressed(left) {
-            linear_velocity += transform.left().normalize();
-        }
+            if inputs.just_pressed(KeyCode::Space) {
+                *gravity = Gravity(-10.0 * time.delta_seconds());
+            }
 
-        
+            gravity.0 += clamp((4.9 * time.delta_seconds()).powf(2.0), 0.0, 50.0);
 
-        if linear_velocity.length() > 0. {
-            linear_velocity = linear_velocity.normalize();
-            linear_velocity *= time.delta_seconds();
-            linear_velocity *= walk_speed.0;
-        }
+            linear_velocity -= Vec3::new(0.0, gravity.0, 0.0);
 
-
-        if controller_output.grounded{
-            *gravity = Gravity(0.0);
-        }
-
-        if inputs.just_pressed(KeyCode::Space){
-            *gravity = Gravity(-10.0*time.delta_seconds());
-        }
-
-        gravity.0 += clamp((4.9*time.delta_seconds()).powf(2.0), 0.0, 50.0);
-        
-        linear_velocity -= Vec3::new(0.0, gravity.0, 0.0);
-
-        controller.translation = Some(linear_velocity);
-    });
+            controller.translation = Some(linear_velocity);
+        },
+    );
 }
