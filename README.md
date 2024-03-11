@@ -21,6 +21,7 @@ Example map model [Temple ruins](https://sketchfab.com/3d-models/temple-ruins-6b
 
 | bevy  | bevy_fpc |
 |-------|----------|
+| 0.13  | 0.1.3    |
 | 0.12  | 0.1.2    |
 | 0.11  | 0.1.1    |
 | 0.10  | 0.1      |
