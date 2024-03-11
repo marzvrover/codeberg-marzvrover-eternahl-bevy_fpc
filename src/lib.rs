@@ -46,7 +46,7 @@ use bevy::prelude::*;
 use bevy_fpc_core::{
     angular::{apply_motion, free_cursor, handle_request, lock_cursor, VisionMotionTarget},
     incarnation::embody,
-    linear::handle_movements,
+    linear::{handle_movements, Gravity},
 };
 use bevy_rapier3d::prelude::*;
 
@@ -74,7 +74,7 @@ pub struct FpcPlugin;
 impl Plugin for FpcPlugin {
     fn build(&self, app: &mut bevy::prelude::App) {
         app.init_resource::<FpcConfiguration>()
-            .add_state::<AngularState>()
+            .init_state::<AngularState>()
             .add_systems(
                 Update,
                 (
@@ -102,26 +102,32 @@ pub struct Fpc;
 pub struct FpcBundle {
     pub fpc: Fpc,
     pub body: RigidBody,
+    pub ccd: Ccd,
     pub collider: Collider,
     pub controller: KinematicCharacterController,
+    pub controller_output: KinematicCharacterControllerOutput,
     pub vmt: VisionMotionTarget,
     pub walk_speed: WalkSpeed,
     pub spatial: SpatialBundle,
     #[cfg(feature = "bevy_fpc_sprint")]
     pub sprint_rate: bevy_fpc_sprint::SprintRate,
+    pub gravity: Gravity,
 }
 impl Default for FpcBundle {
     fn default() -> Self {
         Self {
             fpc: Fpc,
             body: RigidBody::KinematicPositionBased,
+            ccd: Ccd::enabled(),
             collider: Collider::capsule_y(0.5, 0.25),
             controller: KinematicCharacterController::default(),
+            controller_output: KinematicCharacterControllerOutput::default(),
             spatial: SpatialBundle::default(),
             vmt: VisionMotionTarget::default(),
             walk_speed: WalkSpeed::default(),
             #[cfg(feature = "bevy_fpc_sprint")]
             sprint_rate: bevy_fpc_sprint::SprintRate::default(),
+            gravity: Gravity(0.0),
         }
     }
 }
