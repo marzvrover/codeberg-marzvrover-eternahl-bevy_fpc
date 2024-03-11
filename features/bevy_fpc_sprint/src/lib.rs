@@ -43,7 +43,7 @@ impl Default for SprintRate {
 /// Internally using _Rapier_ `KinematicCharacterController`.
 pub fn handle_sprint(
     mut query: Query<(&mut KinematicCharacterController, &Transform, &SprintRate), With<Player>>,
-    inputs: Res<Input<KeyCode>>,
+    inputs: Res<ButtonInput<KeyCode>>,
     fpc_conf: Res<FpcSprintConfiguration>,
 ) {
     query.for_each_mut(|(mut controller, transform, SprintRate(rate))| {

@@ -26,8 +26,8 @@ fn init(
     // ground
     commands
         .spawn(MaterialMeshBundle {
-            mesh: meshes.add(shape::Plane::from_size(100.).into()),
-            material: materials.add(Color::rgb(0.8, 0.655, 0.317).into()),
+            mesh: meshes.add(shape::Plane::from_size(100.)),
+            material: materials.add(Color::rgb(0.8, 0.655, 0.317)),
             ..Default::default()
         })
         .insert(Collider::cuboid(100., 0., 100.));
@@ -96,7 +96,7 @@ fn init(
 
 /// Handle `AngularState` switching by input
 fn angular_state_switching(
-    inputs: Res<Input<KeyCode>>,
+    inputs: Res<ButtonInput<KeyCode>>,
     state: Res<State<AngularState>>,
     mut next: ResMut<NextState<AngularState>>,
 ) {
