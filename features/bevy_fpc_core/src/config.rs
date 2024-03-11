@@ -5,18 +5,18 @@ use std::f32::consts::PI;
 
 /// Linear movement inputs for a `qwerty` keyboard layout (WASD)
 pub const LINEAR_QWERTY_LAYOUT: KeyboardLinearInputs = KeyboardLinearInputs {
-    forward: KeyCode::W,
-    back: KeyCode::S,
-    right: KeyCode::D,
-    left: KeyCode::A,
+    forward: KeyCode::KeyW,
+    back: KeyCode::KeyS,
+    right: KeyCode::KeyD,
+    left: KeyCode::KeyA,
 };
 
 /// Linear movement inputs for a `azerty` keyboard layout (ZQSD)
 pub const LINEAR_AZERTY_LAYOUT: KeyboardLinearInputs = KeyboardLinearInputs {
-    forward: KeyCode::Z,
-    back: KeyCode::S,
-    right: KeyCode::D,
-    left: KeyCode::Q,
+    forward: KeyCode::KeyZ,
+    back: KeyCode::KeyS,
+    right: KeyCode::KeyD,
+    left: KeyCode::KeyQ,
 };
 
 /// Structure for the keyboard linear inputs configuration
