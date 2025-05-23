@@ -11,7 +11,7 @@ fn main() {
         .add_plugins(bevy_fpc::FpcPlugin)
         .add_systems(Startup, init)
         .add_systems(Update, angular_state_switching)
-        .run()
+        .run();
 }
 
 fn init(
@@ -26,8 +26,8 @@ fn init(
     // ground
     commands
         .spawn(MaterialMeshBundle {
-            mesh: meshes.add(shape::Plane::from_size(100.)),
-            material: materials.add(Color::rgb(0.8, 0.655, 0.317)),
+            mesh: meshes.add(Plane3d::new(Vec3::Y, Vec2::splat(100.0))),
+            material: materials.add(Color::srgb(0.8, 0.655, 0.317)),
             ..Default::default()
         })
         .insert(Collider::cuboid(100., 0., 100.));

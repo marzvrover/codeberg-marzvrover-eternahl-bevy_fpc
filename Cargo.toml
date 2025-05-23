@@ -18,8 +18,11 @@ bevy_fpc_core = { workspace = true }
 bevy_fpc_sprint = { path = "features/bevy_fpc_sprint", version = "0.1", optional = true }
 
 ["dev-dependencies"]
-bevy = { workspace = true, default-features = false, features = ["bevy_core_pipeline", "bevy_asset", "bevy_gltf", "bevy_scene", "bevy_winit", "bevy_render", "bevy_text", "bevy_ui", "default_font", "tonemapping_luts"] }
+bevy = { workspace = true, features = ["bevy_core_pipeline", "bevy_asset", "bevy_gltf", "bevy_scene", "bevy_winit", "bevy_render", "bevy_state", "bevy_text", "bevy_ui", "default_font", "tonemapping_luts"] }
 bevy_rapier3d = { workspace = true, features = ["simd-stable", "debug-render"] }
+
+[target.'cfg(target_os = "linux")'.dev-dependencies]
+bevy = { workspace = true, features = ["wayland", "x11"] }
 
 [features]
 default = ["bevy_fpc_sprint"]
@@ -29,15 +32,15 @@ members = ["features/*"]
 
 [workspace.dependencies]
 bevy_fpc_core = { path = "features/bevy_fpc_core", version = "0.1" }
-bevy = { version = "0.13", default-features = false, features = ["bevy_core_pipeline"] }
-bevy_rapier3d = { version = "0.25", default-features = false, features = ["dim3", "async-collider"] }
+bevy = { version = "0.14", default-features = false, features = ["bevy_core_pipeline"] }
+bevy_rapier3d = { version = "0.27", default-features = false, features = ["dim3", "async-collider"] }
 log = "0.4"
 
 [workspace.package]
 authors = ["Thomas 'Eternahl' ROLLIN"]
 edition = "2021"
 license = "Apache-2.0 OR MIT"
-version = "0.1.3"
+version = "0.1.4"
 repository = "https://codeberg.org/Eternahl/bevy_fpc"
 categories = ["game-development", "game-engines"]
 
