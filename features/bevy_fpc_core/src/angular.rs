@@ -72,7 +72,7 @@ pub fn apply_motion(
     fpc_conf: Res<FpcConfiguration>,
 ) {
     // interpolation speed
-    let interpolation = time.delta_seconds() * 20. / fpc_conf.angular_smoothing;
+    let interpolation = time.delta().as_secs_f32() * 20. / fpc_conf.angular_smoothing;
     query.iter_mut().for_each(
         |(
             children,
@@ -101,15 +101,15 @@ pub fn apply_motion(
 /// Configure mouse cursor grab mode to `Locked` and hide the cursor.
 pub fn lock_cursor(mut windows: Query<&mut Window>) {
     if let Ok(mut window) = windows.get_single_mut() {
-        window.cursor.grab_mode = CursorGrabMode::Locked;
-        window.cursor.visible = false;
+        window.cursor_options.grab_mode = CursorGrabMode::Locked;
+        window.cursor_options.visible = false;
     }
 }
 
 /// Configure mouse cursor grab mode to `None` ans show the cursor.
 pub fn free_cursor(mut windows: Query<&mut Window>) {
     if let Ok(mut window) = windows.get_single_mut() {
-        window.cursor.grab_mode = CursorGrabMode::None;
-        window.cursor.visible = true;
+        window.cursor_options.grab_mode = CursorGrabMode::None;
+        window.cursor_options.visible = true;
     }
 }

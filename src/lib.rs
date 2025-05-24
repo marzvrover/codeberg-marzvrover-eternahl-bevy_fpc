@@ -108,7 +108,8 @@ pub struct FpcBundle {
     pub controller_output: KinematicCharacterControllerOutput,
     pub vmt: VisionMotionTarget,
     pub walk_speed: WalkSpeed,
-    pub spatial: SpatialBundle,
+    pub transform: Transform,
+    pub visibility: Visibility,
     #[cfg(feature = "bevy_fpc_sprint")]
     pub sprint_rate: bevy_fpc_sprint::SprintRate,
     pub gravity: Gravity,
@@ -122,7 +123,8 @@ impl Default for FpcBundle {
             collider: Collider::capsule_y(0.5, 0.25),
             controller: KinematicCharacterController::default(),
             controller_output: KinematicCharacterControllerOutput::default(),
-            spatial: SpatialBundle::default(),
+            transform: Transform::default(),
+            visibility: Visibility::default(),
             vmt: VisionMotionTarget::default(),
             walk_speed: WalkSpeed::default(),
             #[cfg(feature = "bevy_fpc_sprint")]

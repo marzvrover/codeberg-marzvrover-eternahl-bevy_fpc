@@ -8,7 +8,7 @@ pub fn embody(mut commands: Commands, query: Query<Entity, Added<Player>>) {
     query.iter().for_each(|entity| {
         if let Some(mut ec) = commands.get_entity(entity) {
             ec.with_children(|builder| {
-                builder.spawn(Camera3dBundle::default());
+                builder.spawn(Camera3d::default());
             });
         }
     });
