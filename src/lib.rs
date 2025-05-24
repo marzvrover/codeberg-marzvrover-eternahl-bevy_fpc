@@ -121,7 +121,15 @@ impl Default for FpcBundle {
             body: RigidBody::KinematicPositionBased,
             ccd: Ccd::enabled(),
             collider: Collider::capsule_y(0.5, 0.25),
-            controller: KinematicCharacterController::default(),
+            controller: KinematicCharacterController {
+                autostep: Some(CharacterAutostep {
+                    max_height: CharacterLength::Absolute(0.3),
+                    min_width: CharacterLength::Absolute(0.25),
+                    include_dynamic_bodies: false,
+                    ..default()
+                }),
+                ..default()
+            },
             controller_output: KinematicCharacterControllerOutput::default(),
             transform: Transform::default(),
             visibility: Visibility::default(),

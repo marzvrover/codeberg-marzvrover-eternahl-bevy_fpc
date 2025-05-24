@@ -45,7 +45,7 @@ pub fn handle_request(
             vmt.horizontal = y;
 
             // calculate vertical angle target
-            for &child in children.iter() {
+            for child in children.iter() {
                 // apply delta
                 let mut vertical_transform = children_query.get_mut(child).unwrap().clone();
                 vertical_transform.rotation = Quat::from_rotation_x(vmt.vertical);
@@ -87,7 +87,7 @@ pub fn apply_motion(
                 .rotation
                 .slerp(Quat::from_rotation_y(*horizontal), interpolation);
 
-            for &child in children.iter() {
+            for child in children.iter() {
                 // apply camera vertical rotation
                 let mut camera_transform_target = children_query.get_mut(child).unwrap();
                 camera_transform_target.rotation = camera_transform_target
@@ -100,7 +100,7 @@ pub fn apply_motion(
 
 /// Configure mouse cursor grab mode to `Locked` and hide the cursor.
 pub fn lock_cursor(mut windows: Query<&mut Window>) {
-    if let Ok(mut window) = windows.get_single_mut() {
+    if let Ok(mut window) = windows.single_mut() {
         window.cursor_options.grab_mode = CursorGrabMode::Locked;
         window.cursor_options.visible = false;
     }
@@ -108,7 +108,7 @@ pub fn lock_cursor(mut windows: Query<&mut Window>) {
 
 /// Configure mouse cursor grab mode to `None` ans show the cursor.
 pub fn free_cursor(mut windows: Query<&mut Window>) {
-    if let Ok(mut window) = windows.get_single_mut() {
+    if let Ok(mut window) = windows.single_mut() {
         window.cursor_options.grab_mode = CursorGrabMode::None;
         window.cursor_options.visible = true;
     }
