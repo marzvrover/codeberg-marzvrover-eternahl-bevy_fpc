@@ -8,7 +8,7 @@ First-person-controller plugin for the [Bevy](https://bevyengine.org) game-engin
 
 The controller benefits from the features offered by the [`rapier character controller`](https://rapier.rs/docs/user_guides/bevy_plugin/character_controller).
 
-# Example 
+# Example
 
 Try out the example by cloning this repo and running the following command:
 
@@ -19,12 +19,13 @@ Example map model [Temple ruins](https://sketchfab.com/3d-models/temple-ruins-6b
 
 # Version compatibility
 
-| bevy  | bevy_fpc |
-|-------|----------|
-| 0.13  | 0.1.3    |
-| 0.12  | 0.1.2    |
-| 0.11  | 0.1.1    |
-| 0.10  | 0.1      |
+| bevy | bevy_fpc |
+| ---- | -------- |
+| 0.14 | 0.1.4    |
+| 0.13 | 0.1.3    |
+| 0.12 | 0.1.2    |
+| 0.11 | 0.1.1    |
+| 0.10 | 0.1      |
 
 # License
 
