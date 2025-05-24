@@ -7,7 +7,7 @@ fn main() {
     App::new()
         .add_plugins(DefaultPlugins)
         .add_plugins(RapierPhysicsPlugin::<NoUserData>::default())
-        // .add_plugin(RapierDebugRenderPlugin::default())
+        // .add_plugins(RapierDebugRenderPlugin::default())
         .add_plugins(bevy_fpc::FpcPlugin)
         .add_systems(Startup, (init, spawn_player).chain())
         .add_systems(Update, angular_state_switching)
@@ -53,9 +53,19 @@ fn init(
                         Collider::cuboid(0.5, 0.15, 0.15),
                     ),
                     (
+                        Vec3::new(0., -0., 2.33),
+                        Quat::from_rotation_x(std::f32::consts::FRAC_PI_4),
+                        Collider::cuboid(0.5, 0.075, 0.25),
+                    ),
+                    (
                         Vec3::new(0., 0.3, 1.7),
                         Quat::default(),
                         Collider::cuboid(0.5, 0.15, 0.15),
+                    ),
+                    (
+                        Vec3::new(0., 0.2, 1.85),
+                        Quat::from_rotation_x(std::f32::consts::FRAC_PI_4),
+                        Collider::cuboid(0.5, 0.05, 0.15),
                     ),
                 ]))
                 .insert(Transform::default());
