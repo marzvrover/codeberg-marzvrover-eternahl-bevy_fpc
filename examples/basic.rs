@@ -9,7 +9,7 @@ fn main() {
         .add_plugins(RapierPhysicsPlugin::<NoUserData>::default())
         // .add_plugin(RapierDebugRenderPlugin::default())
         .add_plugins(bevy_fpc::FpcPlugin)
-        .add_systems(Startup, init)
+        .add_systems(Startup, (init, spawn_player).chain())
         .add_systems(Update, angular_state_switching)
         .run();
 }
@@ -25,28 +25,25 @@ fn init(
 
     // ground
     commands
-        .spawn(MaterialMeshBundle {
-            mesh: meshes.add(Plane3d::new(Vec3::Y, Vec2::splat(100.0))),
-            material: materials.add(Color::srgb(0.8, 0.655, 0.317)),
-            ..Default::default()
-        })
-        .insert(Collider::cuboid(100., 0., 100.));
+        .spawn((
+            Mesh3d(meshes.add(Plane3d::new(Vec3::Y, Vec2::splat(100.0)))),
+            MeshMaterial3d(materials.add(Color::srgb(0.8, 0.655, 0.317))),
+        ))
+        .insert(Collider::cuboid(100., 0.1, 100.));
 
     // map model
     commands
-        .spawn(SpatialBundle {
-            transform: Transform::from_xyz(0., 0., -8.),
-            ..Default::default()
-        })
+        .spawn((
+            Transform::from_xyz(0., 0., -8.),
+        ))
         .with_children(|builder| {
-            builder.spawn(SceneBundle {
-                scene: assets_server.load("temple_ruins-deyama.glb#Scene0"),
-                ..Default::default()
-            });
+            builder.spawn((
+                SceneRoot(assets_server.load("temple_ruins-deyama.glb#Scene0")),
+            ));
 
             builder
                 .spawn(Collider::compound(vec![
-                    // floor colliders
+                    // floor colliderss
                     (Vec3::ZERO, Quat::default(), Collider::cuboid(2., 0.3, 2.)),
                     (Vec3::ZERO, Quat::default(), Collider::cuboid(1.7, 0.6, 1.7)),
                     // stair collider
@@ -61,7 +58,7 @@ fn init(
                         Collider::cuboid(0.5, 0.15, 0.15),
                     ),
                 ]))
-                .insert(TransformBundle::default());
+                .insert(Transform::default());
         });
 
     // lights
@@ -70,28 +67,30 @@ fn init(
         ..Default::default()
     });
     commands
-        .spawn(DirectionalLightBundle {
-            directional_light: DirectionalLight {
+        .spawn((
+            DirectionalLight {
                 illuminance: 100000.0 / 2.,
                 ..Default::default()
             },
-            ..Default::default()
-        })
+        ))
         .insert(Transform {
             translation: Vec3::new(1., 2., 0.),
             rotation: Quat::from_rotation_x(-PI / 2.),
             ..Default::default()
         });
 
-    commands.spawn(TextBundle::from_section(
-        "Press `tab` key to switch angular state",
-        TextStyle::default(),
-    ));
+    commands.spawn(
+        Text::new("Press `tab` key to switch angular state")
+    );
+}
 
+fn spawn_player(
+    mut commands: Commands,
+) {
     commands
         .spawn(FpcBundle::default())
         .insert(bevy_fpc::Player)
-        .insert(TransformBundle::from(Transform::from_xyz(0., 0.75, 0.)));
+        .insert(Transform::from_xyz(0., 5.0, 0.));
 }
 
 /// Handle `AngularState` switching by input
